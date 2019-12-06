@@ -3,9 +3,9 @@
 
 ### Installation:
 
-git clone
-cd project-file-compression
-mvn test
+* git clone
+* cd project-file-compression
+* mvn test
 
 ### Algorithm Theory:
 
