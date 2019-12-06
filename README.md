@@ -16,6 +16,7 @@ To decompress, Huffman must read the file for the Huffman tree, and then for eac
 
 Pros:
 - More common symbols will take up less space when compressed
+
 Cons:
 - Reads the file 2 times
 - Has to store the Huffman tree in the file
@@ -27,6 +28,7 @@ To decompress, LZW just does the exact same thing, but in reverse order, to buil
 
 Pros:
 - Don't have to store dictionary for encoding/decoding (builds dynamically)
+
 Cons:
 - Dictionary has to be built twice (more time/work)
 - Implementation of the algorithm can be pretty complicated
