@@ -1,10 +1,12 @@
-/******************************************************************************
- *  Compilation:  javac Deschubs.java
- *  Execution:    java Deschubs <archive> .ll / .hh
- *  
- *  Decompresses either a Huffman or LZW encoded file according to extension
- *
- ******************************************************************************/
+/* Program: Final
+ * Author: Bryce Gattis
+ * Credit: Sedgewick for original code
+ * Date: Fall 2019
+ * Course: CS375 Software Engineering II
+ * Compile: cd into src/main/java folder, javac Deschubs.java
+ * Execute: cd into src/main/java folder, java Deschubs <inputFile>
+ * Note: Decompresses file(s) with either the Huffman or LZW decoder (deduced by the file extension)
+ */
 
 public class Deschubs {
     

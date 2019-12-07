@@ -3,7 +3,7 @@
  * Credit: Sedgewick for original code
  * Date: Fall 2019
  * Course: CS375 Software Engineering II
- * Compile: cd into src/main/java folder, javac *.java
+ * Compile: cd into src/main/java folder, javac SchubsL.java
  * Execute: cd into src/main/java folder, java SchubsL <inputFile>
  * Note: Compresses a file with LZW Encoding
  */
