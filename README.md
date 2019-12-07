@@ -7,7 +7,7 @@
 * cd project-file-compression
 * mvn test
 
-### Algorithm Theory:
+### Design:
 
 #### Huffman Encoding:
 
@@ -32,3 +32,19 @@ Pros:
 Cons:
 - Dictionary has to be built twice (more time/work)
 - Implementation of the algorithm can be pretty complicated
+
+### Tests:
+
+Test for compression and uncompression successfully with LZW and Huffman.
+
+### Test Instructions:
+
+Run mvn test in the directory where the pom.xml is located.
+
+### Run Examples:
+
+* SchubsL \<filename> or SchubsL \<GLOB>: Produces individual LZW compressed files for each file given
+* SchubsH \<filename> or SchubsH \<GLOB>: Produces individual Huffman compressed files for each file given
+* Deschubs \<filename> or Deschubs \<GLOB>: Produces individual decompressed files for each file given (uses extension as clue on which decompressor to use)
+
+
