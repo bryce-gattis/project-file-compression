@@ -1,12 +1,12 @@
 /************************************
- * Compilation:  javac LZW.java
- * Execution:    java LZW input.txt   (compress)
- * Execution:    java LZW input.txt   (expand)
- * Dependencies: BinaryIn.java BinaryOut.java
- * 
- * Compress or expand binary input from standard input using LZW.
+ * Compilation:  javac SchubsL.java
+ Execution:    java SchubsL input.txt   (compress)
+ Execution:    java SchubsL input.txt   (expand)
+ Dependencies: BinaryIn.java BinaryOut.java
+ 
+ Compress or expand binary input from file input using LZW.
  ***********************************/
-public class LZW {
+public class SchubsL {
     private static final int R = 256;        // number of input chars
     private static final int L = 4096;       // number of codewords = 2^W
     private static final int W = 12;         // codeword width

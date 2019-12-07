@@ -1,5 +1,6 @@
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import static org.junit.Assert.assertTrue;
@@ -8,9 +9,20 @@ import org.junit.Test;
 
 /**
  * Unit test for Huffman Encoding.
+ * Run with mvn test
  */
-public class HuffmanTest 
+public class FinalTest 
 {
+    public boolean compareFileWithString(File input, String string) throws IOException
+    {
+        byte[] fileContentInput;
+        try (FileInputStream inputFileStream = new FileInputStream(input)) {
+            fileContentInput = new byte[(int)input.length()];
+            inputFileStream.read(fileContentInput);
+        }
+        
+        return new String(fileContentInput).equals(string);
+    }
     @Test
     public void abraTest()
     {
@@ -30,7 +42,7 @@ public class HuffmanTest
                                "10001111\n" +
                                "10010100\n" +
                                "120 bits";
-        Huffman.main(new String[] {"src/test/resources/abra.txt", "src/test/resources/abraOut.txt"});
+        SchubsH.main(new String[] {"src/test/resources/abra.txt", "src/test/resources/abraOut.txt"});
         String result = BinaryDumpFile.main(new String[] {"src/test/resources/abraOut.txt", "8"});
         assertTrue(desiredResult.equals(result));
     }
@@ -82,7 +94,7 @@ public class HuffmanTest
                                 "00100101\n" +
                                 "01000000\n" +
                                 "352 bits";
-        Huffman.main(new String[] {"src/test/resources/tinytinyTale.txt", "src/test/resources/tinytinyTaleOut.txt"});
+        SchubsH.main(new String[] {"src/test/resources/tinytinyTale.txt", "src/test/resources/tinytinyTaleOut.txt"});
         String result = BinaryDumpFile.main(new String[] {"src/test/resources/tinytinyTaleOut.txt", "8"});
         assertTrue(desiredResult.equals(result));
     }
@@ -130,20 +142,31 @@ public class HuffmanTest
                                "304 bits";
         File test0 = new File("src/test/resources/HuffmanFullTest.txt");
         String str = "Hello this is a test && it's easy***";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(test0));
-        writer.write(str);
-        writer.close();
-        Huffman.compress("src/test/resources/HuffmanFullTest.txt",
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(test0))) {
+            writer.write(str);
+        }
+        SchubsH.compress("src/test/resources/HuffmanFullTest.txt",
                          "src/test/resources/HuffmanFullTestCompressed.txt");
         String result = BinaryDumpFile.main(new String[] {"src/test/resources/HuffmanFullTestCompressed.txt", "8"});
-        Huffman.expand("src/test/resources/HuffmanFullTestCompressed.txt",
+        SchubsH.expand("src/test/resources/HuffmanFullTestCompressed.txt",
                        "src/test/resources/HuffmanFullTest.txt");
         assertTrue(desiredResult.equals(result));
     }
     @Test
-    public void LZWTest() 
+    public void LZWTest() throws IOException
     {
-        LZW.compress("src/test/resources/LZWFile.txt", "src/test/resources/LZWFileCompressed.txt");
-        LZW.expand("src/test/resources/LZWFileCompressed.txt", "src/test/resources/LZWFile.txt");
+        File lzwFile = new File("src/test/resources/LZWTest.txt");
+        String str = "Throwing consider dwelling bachelor joy her proposal laughter. \n" +
+                     "Raptures returned disposed one entirely her men ham. \n" +
+                     "By to admire vanity county an mutual as roused. \n" +
+                     "Of an thrown am warmly merely result depart supply. \n" +
+                     "Required honoured trifling eat pleasure man relation. \n" +
+                     "Assurance yet bed was improving furniture man. Distrusts delighted she listening mrs extensive admitting far. ";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(lzwFile))) {
+            writer.write(str);
+        }
+        SchubsL.compress("src/test/resources/LZWFile.txt", "src/test/resources/LZWFileCompressed.txt");
+        SchubsL.expand("src/test/resources/LZWFileCompressed.txt", "src/test/resources/LZWFile.txt");
+        assertTrue(compareFileWithString(lzwFile, str));
     }
 }

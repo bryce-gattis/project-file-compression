@@ -3,10 +3,10 @@
  * Date: Fall 2019
  * Course: CS375 Software Engineering II
  * Compile: cd into src/main/java folder, javac *.java
- * Execute: cd into src/main/java folder, java Huffman <inputFile> <outputFile>
+ * Execute: cd into src/main/java folder, java SchubsH <inputFile> <outputFile>
  * Note: Compresses a file with Huffman Encoding
  */
-public class Huffman 
+public class SchubsH 
 {
     public static void main( String[] args )
     {
