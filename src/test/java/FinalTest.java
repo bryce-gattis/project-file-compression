@@ -42,8 +42,8 @@ public class FinalTest
                                "10001111\n" +
                                "10010100\n" +
                                "120 bits";
-        SchubsH.main(new String[] {"src/test/resources/abra.txt", "src/test/resources/abraOut.txt"});
-        String result = BinaryDumpFile.main(new String[] {"src/test/resources/abraOut.txt", "8"});
+        SchubsH.main(new String[] {"src/test/resources/abra.txt", "src/test/resources/abra.txt.hh"});
+        String result = BinaryDumpFile.main(new String[] {"src/test/resources/abra.txt.hh", "8"});
         assertTrue(desiredResult.equals(result));
     }
     @Test
@@ -94,8 +94,8 @@ public class FinalTest
                                 "00100101\n" +
                                 "01000000\n" +
                                 "352 bits";
-        SchubsH.main(new String[] {"src/test/resources/tinytinyTale.txt", "src/test/resources/tinytinyTaleOut.txt"});
-        String result = BinaryDumpFile.main(new String[] {"src/test/resources/tinytinyTaleOut.txt", "8"});
+        SchubsH.main(new String[] {"src/test/resources/tinytinyTale.txt"});
+        String result = BinaryDumpFile.main(new String[] {"src/test/resources/tinytinyTale.txt.hh", "8"});
         assertTrue(desiredResult.equals(result));
     }
     @Test
@@ -140,17 +140,16 @@ public class FinalTest
                                "10011001\n" +
                                "10000000\n" +
                                "304 bits";
-        File test0 = new File("src/test/resources/HuffmanFullTest.txt");
+        File HuffmanFull = new File("src/test/resources/HuffmanFullTest.txt");
         String str = "Hello this is a test && it's easy***";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(test0))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(HuffmanFull))) {
             writer.write(str);
         }
-        SchubsH.compress("src/test/resources/HuffmanFullTest.txt",
-                         "src/test/resources/HuffmanFullTestCompressed.txt");
-        String result = BinaryDumpFile.main(new String[] {"src/test/resources/HuffmanFullTestCompressed.txt", "8"});
-        SchubsH.expand("src/test/resources/HuffmanFullTestCompressed.txt",
-                       "src/test/resources/HuffmanFullTest.txt");
+        SchubsH.compress("src/test/resources/HuffmanFullTest.txt");
+        String result = BinaryDumpFile.main(new String[] {"src/test/resources/HuffmanFullTest.txt.hh", "8"});
+        Deschubs.main(new String[] {"src/test/resources/HuffmanFullTest.txt.hh"});
         assertTrue(desiredResult.equals(result));
+        assertTrue(compareFileWithString(HuffmanFull, str));
     }
     @Test
     public void LZWTest() throws IOException

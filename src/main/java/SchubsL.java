@@ -1,15 +1,24 @@
 /************************************
- * Compilation:  javac SchubsL.java
+ Compilation:  javac SchubsL.java
  Execution:    java SchubsL input.txt   (compress)
- Execution:    java SchubsL input.txt   (expand)
  Dependencies: BinaryIn.java BinaryOut.java
  
- Compress or expand binary input from file input using LZW.
+ Compresses to binary input from file input using LZW.
  ***********************************/
 public class SchubsL {
     private static final int R = 256;        // number of input chars
     private static final int L = 4096;       // number of codewords = 2^W
     private static final int W = 12;         // codeword width
+    
+    public static void main( String[] args )
+    {
+        //if (args[0].equals("-")) compress();
+        //else if (args[0].equals("+")) expand();
+        //else throw new RuntimeException("Illegal command line argument");
+        String input = args[0];
+        String output = args[1];
+        compress(input, output);
+    }
     
     public static void compress(String inputFile, String outputFile) {
         BinaryStdInFile.initialize(inputFile);

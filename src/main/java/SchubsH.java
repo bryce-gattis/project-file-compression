@@ -3,7 +3,7 @@
  * Date: Fall 2019
  * Course: CS375 Software Engineering II
  * Compile: cd into src/main/java folder, javac *.java
- * Execute: cd into src/main/java folder, java SchubsH <inputFile> <outputFile>
+ * Execute: cd into src/main/java folder, java SchubsH <inputFile>
  * Note: Compresses a file with Huffman Encoding
  */
 public class SchubsH 
@@ -14,8 +14,7 @@ public class SchubsH
         //else if (args[0].equals("+")) expand();
         //else throw new RuntimeException("Illegal command line argument");
         String input = args[0];
-        String output = args[1];
-        compress(input, output);
+        compress(input);
     }
     private static final int R = 256;
     public static boolean logging = true;
@@ -53,9 +52,9 @@ public class SchubsH
             System.err.println(msg);
     }
     
-    public static void compress(String inputFile, String outputFile){
+    public static void compress(String inputFile){
         BinaryStdInFile.initialize(inputFile);
-        BinaryStdOutFile.initialize(outputFile);
+        BinaryStdOutFile.initialize(inputFile + ".hh");
         String s = BinaryStdInFile.readString();
         char[] input = s.toCharArray();
         
