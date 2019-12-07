@@ -1,12 +1,12 @@
-/* Program: Huffman Encoding
+/* Program: Final
  * Author: Bryce Gattis
  * Date: Fall 2019
  * Course: CS375 Software Engineering II
- * Compile: cd into src/main/java folder, javac com\mycompany\huffmanse2\*.java
- * Execute: cd into src/main/java folder, java com.mycompany.huffmanse2.HuffmanSE2 ..\..\test\resources\abra.txt ..\..\test\resources\abraOut.txt  
- * Note: Compresses a file
+ * Compile: cd into src/main/java folder, javac *.java
+ * Execute: cd into src/main/java folder, java Huffman <inputFile> <outputFile>
+ * Note: Compresses a file with Huffman Encoding
  */
-public class HuffmanSE2 
+public class Huffman 
 {
     public static void main( String[] args )
     {
@@ -134,27 +134,29 @@ public class HuffmanSE2
         }
     }
     
-    public static void expand() {
+    public static void expand(String inputFile, String outputFile) {
+        BinaryStdInFile.initialize(inputFile);
+        BinaryStdOutFile.initialize(outputFile);
         Node root = readTrie();
         
-        int length = BinaryStdIn.readInt();
+        int length = BinaryStdInFile.readInt();
         
         for(int i = 0; i < length; i++) {
             Node x = root;
             while (!x.isLeaf()) {
-                boolean bit = BinaryStdIn.readBoolean();
+                boolean bit = BinaryStdInFile.readBoolean();
                 if (bit) x = x.right;
                 else x = x.left;
             }
-            BinaryStdOut.write(x.ch);
+            BinaryStdOutFile.write(x.ch);
         }
-        BinaryStdOut.flush();
+        BinaryStdOutFile.flush();
     }
     
     private static Node readTrie() {
-        boolean isLeaf = BinaryStdIn.readBoolean();
+        boolean isLeaf = BinaryStdInFile.readBoolean();
         if (isLeaf) {
-            char x = BinaryStdIn.readChar();
+            char x = BinaryStdInFile.readChar();
             err_println(":t " + x);
             return new Node(x, -1, null, null);
         }
