@@ -1,10 +1,12 @@
-/************************************
- Compilation:  javac SchubsL.java
- Execution:    java SchubsL <filename>   (compress)
- Dependencies: BinaryIn.java BinaryOut.java
- 
- Compresses to binary input from file input using LZW.
- ***********************************/
+/* Program: Final
+ * Author: Bryce Gattis
+ * Credit: Sedgewick for original code
+ * Date: Fall 2019
+ * Course: CS375 Software Engineering II
+ * Compile: cd into src/main/java folder, javac *.java
+ * Execute: cd into src/main/java folder, java SchubsL <inputFile>
+ * Note: Compresses a file with LZW Encoding
+ */
 public class SchubsL {
     private static final int R = 256;        // number of input chars
     private static final int L = 4096;       // number of codewords = 2^W

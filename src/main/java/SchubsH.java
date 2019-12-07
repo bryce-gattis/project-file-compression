@@ -1,5 +1,6 @@
 /* Program: Final
  * Author: Bryce Gattis
+ * Credit: Sedgewick for original code
  * Date: Fall 2019
  * Course: CS375 Software Engineering II
  * Compile: cd into src/main/java folder, javac *.java

@@ -1,9 +1,9 @@
 /******************************************************************************
- *  Compilation:  javac BinaryStdOut.java
- *  Execution:    java BinaryStdOut
+ *  Compilation:  javac BinaryStdOutFile.java
+ *  Execution:    java BinaryStdOutFile
  *  Dependencies: none
  *
- *  Write binary data to standard output, either one 1-bit boolean,
+ *  Write binary data to file output, either one 1-bit boolean,
  *  one 8-bit char, one 32-bit int, one 64-bit double, one 32-bit float,
  *  or one 64-bit long at a time.
  *

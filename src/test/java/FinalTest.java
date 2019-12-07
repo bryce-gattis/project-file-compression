@@ -42,7 +42,7 @@ public class FinalTest
                                "10001111\n" +
                                "10010100\n" +
                                "120 bits";
-        SchubsH.main(new String[] {"src/test/resources/abra.txt", "src/test/resources/abra.txt.hh"});
+        SchubsH.main(new String[] {"src/test/resources/abra.txt"});
         String result = BinaryDumpFile.main(new String[] {"src/test/resources/abra.txt.hh", "8"});
         assertTrue(desiredResult.equals(result));
     }
@@ -150,6 +150,52 @@ public class FinalTest
         Deschubs.main(new String[] {"src/test/resources/HuffmanFullTest.txt.hh"});
         assertTrue(desiredResult.equals(result));
         assertTrue(compareFileWithString(HuffmanFull, str));
+    }
+    @Test
+    public void LZWCompressTest() throws IOException
+    {
+      String desiredResult = "00000100\n" +
+                             "10010000\n" +
+                             "01101101\n" +
+                             "00000010\n" +
+                             "00000000\n" +
+                             "01100001\n" +
+                             "00000010\n" +
+                             "00000000\n" +
+                             "01100110\n" +
+                             "00000110\n" +
+                             "10010000\n" +
+                             "01101100\n" +
+                             "00000110\n" +
+                             "01010000\n" +
+                             "00100000\n" +
+                             "00000111\n" +
+                             "01110000\n" +
+                             "01101001\n" +
+                             "00000111\n" +
+                             "01000000\n" +
+                             "01101000\n" +
+                             "00000010\n" +
+                             "00000000\n" +
+                             "01100011\n" +
+                             "00000110\n" +
+                             "11110000\n" +
+                             "01101110\n" +
+                             "00000111\n" +
+                             "01000000\n" +
+                             "01100101\n" +
+                             "00010001\n" +
+                             "00100000\n" +
+                             "00100000\n" +
+                             "00000011\n" +
+                             "10100000\n" +
+                             "00101001\n" +
+                             "00010000\n" +
+                             "00000000\n" +
+                             "304 bits";
+        SchubsL.main(new String[] {"src/test/resources/LZWCompress.txt"});
+        String result = BinaryDumpFile.main(new String[] {"src/test/resources/LZWCompress.txt.ll", "8"});
+        assertTrue(desiredResult.equals(result));
     }
     @Test
     public void LZWTest() throws IOException

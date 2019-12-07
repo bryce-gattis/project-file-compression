@@ -1,9 +1,9 @@
 /******************************************************************************
- *  Compilation:  javac BinaryStdIn.java
- *  Execution:    java BinaryStdIn < input > output
+ *  Compilation:  javac BinaryStdInFile.java
+ *  Execution:    java BinaryStdInFile < input > output
  *  Dependencies: none             
  *  
- *  Supports reading binary data from standard input.
+ *  Supports reading binary data from file input.
  *
  *  % java BinaryStdIn < input.jpg > output.jpg
  *  % diff input.jpg output.jpg
