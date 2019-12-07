@@ -13,8 +13,10 @@ public class SchubsH
         //if (args[0].equals("-")) compress();
         //else if (args[0].equals("+")) expand();
         //else throw new RuntimeException("Illegal command line argument");
-        String input = args[0];
-        compress(input);
+        for (String input : args) {
+            compress(input);
+        }
+
     }
     private static final int R = 256;
     public static boolean logging = true;
@@ -130,38 +132,6 @@ public class SchubsH
         else{
             st[x.ch] = s;
             err_println("buildCode " + x.ch + " " + s);
-        }
-    }
-    
-    public static void expand(String inputFile, String outputFile) {
-        BinaryStdInFile.initialize(inputFile);
-        BinaryStdOutFile.initialize(outputFile);
-        Node root = readTrie();
-        
-        int length = BinaryStdInFile.readInt();
-        
-        for(int i = 0; i < length; i++) {
-            Node x = root;
-            while (!x.isLeaf()) {
-                boolean bit = BinaryStdInFile.readBoolean();
-                if (bit) x = x.right;
-                else x = x.left;
-            }
-            BinaryStdOutFile.write(x.ch);
-        }
-        BinaryStdOutFile.flush();
-    }
-    
-    private static Node readTrie() {
-        boolean isLeaf = BinaryStdInFile.readBoolean();
-        if (isLeaf) {
-            char x = BinaryStdInFile.readChar();
-            err_println(":t " + x);
-            return new Node(x, -1, null, null);
-        }
-        else {
-            err_print("f");
-            return new Node('\0', -1, readTrie(), readTrie());
         }
     }
 }

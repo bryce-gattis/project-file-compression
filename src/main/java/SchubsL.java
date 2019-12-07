@@ -1,6 +1,6 @@
 /************************************
  Compilation:  javac SchubsL.java
- Execution:    java SchubsL input.txt   (compress)
+ Execution:    java SchubsL <filename>   (compress)
  Dependencies: BinaryIn.java BinaryOut.java
  
  Compresses to binary input from file input using LZW.
@@ -15,14 +15,15 @@ public class SchubsL {
         //if (args[0].equals("-")) compress();
         //else if (args[0].equals("+")) expand();
         //else throw new RuntimeException("Illegal command line argument");
-        String input = args[0];
-        String output = args[1];
-        compress(input, output);
+        for(String input : args){
+            compress(input);
+        }
+
     }
     
-    public static void compress(String inputFile, String outputFile) {
+    public static void compress(String inputFile) {
         BinaryStdInFile.initialize(inputFile);
-        BinaryStdOutFile.initialize(outputFile);
+        BinaryStdOutFile.initialize(inputFile + ".ll");
         String input = BinaryStdInFile.readString();
         TST<Integer> st = new TST<>();
         for (int i = 0; i < R; i++)
@@ -39,28 +40,5 @@ public class SchubsL {
         BinaryStdOutFile.write(R, W);
         BinaryStdOutFile.close();
         BinaryStdInFile.close();
-    }
-    public static void expand(String inputFile, String outputFile) {
-        BinaryStdInFile.initialize(inputFile);
-        BinaryStdOutFile.initialize(outputFile);
-        String[] st = new String[L];
-        int i; // next available codeword value
-        // initialize symbol table with all 1-character strings
-        for (i = 0; i < R; i++)
-            st[i] = "" + (char) i;
-        st[i++] = "";                        // (unused) lookahead for EOF
-        int codeword = BinaryStdInFile.readInt(W);
-        String val = st[codeword];
-        while (true) {
-            BinaryStdOutFile.write(val);
-            codeword = BinaryStdInFile.readInt(W);
-            if (codeword == R) break;
-            String s = st[codeword];
-            if (i == codeword) s = val + val.charAt(0);   // special case hack
-            if (i < L) st[i++] = val + s.charAt(0);
-            val = s;
-        }
-        BinaryStdInFile.close();
-        BinaryStdOutFile.close();
     }
 }

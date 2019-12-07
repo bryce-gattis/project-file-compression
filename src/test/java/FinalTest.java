@@ -164,8 +164,8 @@ public class FinalTest
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(lzwFile))) {
             writer.write(str);
         }
-        SchubsL.compress("src/test/resources/LZWFile.txt", "src/test/resources/LZWFileCompressed.txt");
-        SchubsL.expand("src/test/resources/LZWFileCompressed.txt", "src/test/resources/LZWFile.txt");
+        SchubsL.compress("src/test/resources/LZWTest.txt");
+        Deschubs.main(new String[] {"src/test/resources/LZWTest.txt.ll"});
         assertTrue(compareFileWithString(lzwFile, str));
     }
 }
